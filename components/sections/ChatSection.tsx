@@ -53,11 +53,11 @@ export function ChatSection() {
   }
 
   return (
-    <section data-section="Chat" className="py-28 px-6 md:px-12 min-h-screen" style={{ background: "var(--bg)" }}>
+    <section data-section="Chat" className="py-14 md:py-28 px-4 md:px-12 min-h-screen" style={{ background: "var(--bg)" }}>
       <div className="max-w-3xl mx-auto">
 
         {/* Header */}
-        <div className="mb-12 text-center">
+        <div className="mb-6 md:mb-12 text-center">
           <motion.div
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full border mb-6"
             style={{ background: "var(--teal-dim)", borderColor: "rgba(0,200,150,0.3)" }}
@@ -92,7 +92,7 @@ export function ChatSection() {
           initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
         >
           {/* Messages */}
-          <div className="h-96 overflow-y-auto p-6 flex flex-col gap-4">
+          <div className="h-64 md:h-96 overflow-y-auto p-4 md:p-6 flex flex-col gap-4">
             {messages.length === 0 && (
               <div className="flex-1 flex flex-col items-center justify-center gap-4 text-center">
                 <div
@@ -129,7 +129,7 @@ export function ChatSection() {
                     }
                   </div>
                   <div
-                    className="px-4 py-3 rounded-sm max-w-xs md:max-w-md font-body text-sm"
+                    className="px-4 py-3 rounded-sm max-w-[85%] md:max-w-md font-body text-sm"
                     style={{
                       background:  m.role === "assistant" ? "var(--bg-3)" : "var(--bg-4)",
                       color:       "var(--text-2)",

@@ -72,7 +72,7 @@ export function ScrollProgressBar() {
           bottom: "0",
           left: "0",
           right: "0",
-          padding: "12px 24px",
+          padding: "10px clamp(12px, 3vw, 24px)",
           background: "linear-gradient(to top, rgba(15,14,14,0.98), rgba(15,14,14,0.8))",
           backdropFilter: "blur(10px)",
           borderTop: "1px solid rgba(230,168,23,0.25)",
@@ -82,7 +82,7 @@ export function ScrollProgressBar() {
           zIndex: 999,
         }}
       >
-        <div style={{ display: "flex", gap: "8px", alignItems: "center", justifyContent: "center", flexWrap: "wrap" }}>
+        <div style={{ display: "flex", gap: "4px", alignItems: "center", justifyContent: "center", flexWrap: "wrap" }}>
           {sections.map((section, idx) => (
             <motion.button
               key={idx}
@@ -96,17 +96,18 @@ export function ScrollProgressBar() {
               whileTap={{ scale: 0.95 }}
               style={{
                 fontFamily: "var(--font-body)",
-                fontSize: "13px",
+                fontSize: "clamp(11px, 2.5vw, 13px)",
                 letterSpacing: "0.08em",
                 textTransform: "uppercase",
                 fontWeight: 700,
                 color: activeSectionIndex === idx ? "var(--accent)" : "var(--text-2)",
                 background: "transparent",
                 border: "none",
-                padding: "6px 12px",
+                padding: "8px clamp(8px, 2vw, 12px)",
                 cursor: "pointer",
                 transition: "all 0.3s ease",
                 position: "relative",
+                minHeight: "44px",
               }}
             >
               {section.name}

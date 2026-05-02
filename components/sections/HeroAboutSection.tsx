@@ -5,10 +5,10 @@ import { Github, Linkedin, Mail } from "lucide-react";
 import { SOCIAL } from "@/data/portfolio";
 
 const TAGLINES = [
-  "Full-Stack Developer",
-  "UI/UX Enthusiast",
-  "Open Source Contributor",
-  "Creative Problem Solver",
+  "Software Engineer",
+  "Adventure Enthusiast",
+  "Data Engineer",
+  "Dancer",
 ];
 
 const EN_NAME = "TAPASYA SHARMA";
@@ -109,32 +109,53 @@ export function HeroAboutSection() {
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            padding: "min(140px, 12vh) 48px 0",
+            padding: "min(100px, 10vh) clamp(16px, 5vw, 48px) 0",
             flexWrap: "wrap",
             gap: "12px",
           }}
         >
-          <div style={{ display: "flex", gap: "28px", alignItems: "center" }}>
+          <div style={{ display: "flex", gap: "8px", alignItems: "center", flexWrap: "wrap" }}>
             {[
-              { href: SOCIAL.github, Icon: Github, label: "GitHub", color: "#f0f0f0" },
-              { href: SOCIAL.linkedin, Icon: Linkedin, label: "LinkedIn", color: "#0A66C2" },
-              { href: `mailto:${SOCIAL.email}`, Icon: Mail, label: "Email", color: "#e6a817" },
-            ].map(({ href, Icon, label, color }) => (
+              { href: SOCIAL.github, Icon: Github, label: "GitHub", bg: "rgba(255,255,255,0.12)", hoverBg: "rgba(255,255,255,0.22)", color: "#ffffff", borderColor: "rgba(255,255,255,0.3)" },
+              { href: SOCIAL.linkedin, Icon: Linkedin, label: "LinkedIn", bg: "rgba(10,102,194,0.2)", hoverBg: "rgba(10,102,194,0.4)", color: "#6cb4f0", borderColor: "rgba(77,157,224,0.4)" },
+              { href: `mailto:${SOCIAL.email}`, Icon: Mail, label: "Email", bg: "rgba(230,168,23,0.18)", hoverBg: "rgba(230,168,23,0.35)", color: "#f0c040", borderColor: "rgba(230,168,23,0.4)" },
+            ].map(({ href, Icon, label, bg, hoverBg, color, borderColor }) => (
               <a
                 key={label}
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                style={{ color, transition: "opacity 0.2s", opacity: 1 }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.opacity = "0.7")
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.opacity = "1")
-                }
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  color,
+                  background: bg,
+                  border: `1.5px solid ${borderColor}`,
+                  borderRadius: "999px",
+                  padding: "8px clamp(10px, 2vw, 16px) 8px clamp(8px, 2vw, 12px)",
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "clamp(10px, 2.5vw, 11px)",
+                  letterSpacing: "0.06em",
+                  textDecoration: "none",
+                  transition: "all 0.25s ease",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = hoverBg;
+                  e.currentTarget.style.borderColor = color;
+                  e.currentTarget.style.transform = "translateY(-1px)";
+                  e.currentTarget.style.boxShadow = `0 4px 12px ${borderColor}`;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = bg;
+                  e.currentTarget.style.borderColor = borderColor;
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.boxShadow = "none";
+                }}
               >
-                <Icon size={22} />
+                <Icon size={16} />
+                {label}
               </a>
             ))}
           </div>
@@ -143,8 +164,8 @@ export function HeroAboutSection() {
         {/* Name block */}
         <motion.div
           style={{
-            padding: "0 40px",
-            marginTop: "min(60px, 5vh)",
+            padding: "0 clamp(16px, 5vw, 40px)",
+            marginTop: "min(40px, 5vh)",
             position: "relative",
             display: "inline-block",
           }}
@@ -212,49 +233,77 @@ export function HeroAboutSection() {
         </motion.div>
 
         {/* Tagline bar */}
+        {/* Tagline rotator */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={ready ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.65 }}
           style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            flexWrap: "wrap",
-            gap: "20px",
-            padding: "28px 48px 48px",
-            marginTop: "16px",
-            borderTop: "1px solid var(--border)",
+            padding: "20px clamp(16px, 5vw, 48px) 32px",
+            marginTop: "8px",
           }}
         >
-          <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-            <span
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "12px",
+            }}
+          >
+            {/* Rotating role */}
+            <div
               style={{
-                width: 40,
-                height: 1,
-                background: "var(--accent)",
-                display: "inline-block",
-                flexShrink: 0,
+                display: "flex",
+                alignItems: "center",
+                gap: "16px",
               }}
-            />
-            <AnimatePresence mode="wait">
-              <motion.span
-                key={taglineIndex}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.4 }}
+            >
+              <div
                 style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "12px",
-                  letterSpacing: "0.14em",
-                  textTransform: "uppercase",
-                  color: "var(--text-3)",
+                  position: "relative",
+                  height: "38px",
+                  overflow: "hidden",
+                  display: "flex",
+                  alignItems: "center",
                 }}
               >
-                {TAGLINES[taglineIndex]}
-              </motion.span>
-            </AnimatePresence>
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={taglineIndex}
+                    initial={{ y: 30, opacity: 0, rotateX: -40 }}
+                    animate={{ y: 0, opacity: 1, rotateX: 0 }}
+                    exit={{ y: -30, opacity: 0, rotateX: 40 }}
+                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                    style={{
+                      fontFamily: "var(--font-bebas)",
+                      fontSize: "28px",
+                      letterSpacing: "0.12em",
+                      textTransform: "uppercase",
+                      color: "var(--accent)",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    {TAGLINES[taglineIndex]}
+                  </motion.span>
+                </AnimatePresence>
+              </div>
+
+
+            </div>
+
+            {/* Pronouns */}
+            <span
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "11px",
+                letterSpacing: "0.14em",
+                textTransform: "lowercase",
+                color: "var(--text-3)",
+                opacity: 0.7,
+              }}
+            >
+              she / her
+            </span>
           </div>
         </motion.div>
       </motion.div>
@@ -262,13 +311,13 @@ export function HeroAboutSection() {
       {/* ── ABOUT (below name, same section) ── */}
       <div
         ref={aboutRef}
-        style={{ padding: "80px 48px 120px", maxWidth: "1200px", margin: "0 auto" }}
+        style={{ padding: "clamp(24px, 6vw, 48px) clamp(16px, 5vw, 48px) clamp(60px, 10vw, 120px)", maxWidth: "1200px", margin: "0 auto" }}
       >
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-            gap: "80px",
+            gridTemplateColumns: "repeat(auto-fit, minmax(min(320px, 100%), 1fr))",
+            gap: "clamp(32px, 6vw, 80px)",
             alignItems: "start",
           }}
         >
@@ -277,18 +326,6 @@ export function HeroAboutSection() {
             animate={aboutVisible ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           >
-            <p
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "11px",
-                letterSpacing: "0.16em",
-                textTransform: "uppercase",
-                color: "var(--accent)",
-                marginBottom: "16px",
-              }}
-            >
-              About Me
-            </p>
             <h2
               style={{
                 fontFamily: "var(--font-display)",
@@ -299,16 +336,16 @@ export function HeroAboutSection() {
                 marginBottom: "32px",
               }}
             >
-              Crafting digital
-              <br />
+              About{" "}
               <span style={{ fontStyle: "italic", color: "var(--accent)" }}>
-                experiences
+                Me
               </span>
             </h2>
             {[
-              "I'm a full-stack developer with a deep love for building things that are both performant and beautiful. I believe great software is as much about the feeling it gives users as the code underneath.",
-              "Based in Burnaby, BC, I work across the full stack — from pixel-perfect UIs to scalable backend systems. Currently exploring AI-powered interfaces and 3D web.",
-              "When I'm not coding, you'll find me hiking the Lower Mainland trails, experimenting with generative art, or deep in a good book.",
+              "Hii, thanks for stopping by! It truly means a lot to me that you're here checking out my portfolio. This portfolio, unlike traditional ones, has been created to represent me as a person rather than just my technical skills. Hope you enjoy it ✨",
+              "In the background you'll find snippets of my life - moments I've captured and things that inspire me. I have a passion for numerous things in life, including but not limited to technology, adventure, nature, reading, and yapping.",
+              "I'm also a Software Engineer at Microsoft, building performant and secure data products and APIs. I also hold a Bachelor's degree in Data Science from Drexel University.",
+              "Currently based in British Columbia, Canada 📍",
             ].map((para, i) => (
               <motion.p
                 key={i}
@@ -378,24 +415,24 @@ export function HeroAboutSection() {
           >
             {[
               {
-                icon: "⚡",
-                title: "Performance First",
-                body: "I obsess over load times, bundle sizes, and Core Web Vitals. Fast is a feature.",
+                icon: "🔥",
+                title: "Gritty & Disciplined",
+                body: "I push through the hard stuff. Consistency and discipline over motivation — all day, every day.",
+              },
+              {
+                icon: "💻",
+                title: "Tech Savvy",
+                body: "Have been playing with tech since childhood. Be it swapping a laptop battery, building CI/CD pipelines, or refactoring a whole codebase — this is my home turf.",
+              },
+              {
+                icon: "✈️",
+                title: "Adrenaline Junkie",
+                body: "I enjoy things that give me adrenaline. I've jumped off a plane out of choice - twice.",
               },
               {
                 icon: "🎨",
-                title: "Design Fluent",
-                body: "Comfortable in Figma and code alike. I translate design systems into living interfaces.",
-              },
-              {
-                icon: "🔒",
-                title: "Security Minded",
-                body: "From CSP headers to rate limiting — I build with threat models in mind, not as an afterthought.",
-              },
-              {
-                icon: "🤝",
-                title: "Collaborative",
-                body: "Strong communicator across engineering, design, and product. I make PRs people enjoy reviewing.",
+                title: "Creative & Expressive",
+                body: "Painting, dancing, lifting, and exploring nature - these are the things that fuel my creativity and keep me human.",
               },
             ].map((card, i) => (
               <motion.div

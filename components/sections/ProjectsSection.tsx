@@ -60,7 +60,7 @@ function GitHubHeatmap() {
           <img
             src={`https://github-readme-stats.vercel.app/api?username=${GITHUB_USERNAME}&show_icons=true&theme=transparent&title_color=d4a843&text_color=b8b2a4&icon_color=00c896&border_color=1f1d18&bg_color=0f0e0c&hide_border=false&count_private=true`}
             alt="GitHub Stats"
-            className="w-full max-w-lg"
+            className="w-full max-w-full md:max-w-lg"
             style={{ borderRadius: "4px" }}
           />
         </div>
@@ -70,7 +70,7 @@ function GitHubHeatmap() {
           <img
             src={`https://streak-stats.demolab.com/?user=${GITHUB_USERNAME}&theme=transparent&background=0f0e0c&ring=d4a843&fire=e84040&currStreakLabel=d4a843&sideLabels=b8b2a4&dates=6e6a60&border=1f1d18`}
             alt="GitHub Streak"
-            className="w-full max-w-lg"
+            className="w-full max-w-full md:max-w-lg"
             style={{ borderRadius: "4px" }}
           />
         </div>
@@ -97,11 +97,11 @@ export function ProjectsSection() {
   const filtered = active === "All" ? PROJECTS : PROJECTS.filter((p) => p.category === active);
 
   return (
-    <section ref={ref} data-section="Projects" className="py-28 px-6 md:px-12" style={{ background: "var(--bg-2)" }}>
+    <section ref={ref} data-section="Projects" className="py-14 md:py-28 px-4 md:px-12" style={{ background: "var(--bg-2)" }}>
       <div className="max-w-6xl mx-auto">
 
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-6 mb-8 md:mb-14">
           <div>
             <motion.p
               className="font-mono text-xs tracking-widest uppercase mb-3"
@@ -143,7 +143,7 @@ export function ProjectsSection() {
         </div>
 
         {/* Project grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
           <AnimatePresence mode="popLayout">
             {filtered.map((project, i) => (
               <motion.div
@@ -170,7 +170,7 @@ export function ProjectsSection() {
                   }}
                 />
 
-                <div className="p-6 flex flex-col flex-1 gap-4">
+                <div className="p-4 md:p-6 flex flex-col flex-1 gap-4">
                   {/* Title row */}
                   <div className="flex items-start justify-between gap-3">
                     <h3 className="font-display" style={{ fontSize: "20px", color: "var(--text)", fontWeight: 500, lineHeight: 1.2 }}>

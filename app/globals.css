@@ -70,7 +70,9 @@ body {
 
 /* Adjust body for footer */
 body {
-  padding-bottom: 64px;
+  padding-bottom: 56px;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
 }
 
 h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.1; letter-spacing: -0.02em; }

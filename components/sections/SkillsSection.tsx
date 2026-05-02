@@ -22,13 +22,13 @@ export function SkillsSection() {
     <section
       ref={ref}
       data-section="Skills"
-      className="py-28 px-6 md:px-12"
+      className="py-14 md:py-28 px-4 md:px-12"
       style={{ background: "var(--bg)" }}
     >
       <div className="max-w-6xl mx-auto">
 
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-6 mb-8 md:mb-14">
           <div>
             <motion.p
               className="font-mono text-xs tracking-widest uppercase mb-3"
@@ -56,7 +56,7 @@ export function SkillsSection() {
               <button
                 key={cat}
                 onClick={() => setActive(cat)}
-                className="px-4 py-1.5 font-mono text-xs uppercase tracking-widest rounded-sm border transition-all duration-250"
+                className="px-3 py-1.5 font-mono text-xs uppercase tracking-widest rounded-sm border transition-all duration-250 min-h-[44px] md:min-h-0"
                 style={{
                   letterSpacing: "0.1em",
                   background: active === cat ? "var(--accent)" : "transparent",
@@ -71,7 +71,7 @@ export function SkillsSection() {
         </div>
 
         {/* Skill bars — long, posh */}
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-4 md:gap-6">
           {filtered.map((skill, i) => (
             <motion.div
               key={skill.name}

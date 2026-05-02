@@ -101,8 +101,8 @@ export const PROJECTS = [
 ];
 
 export const SOCIAL = {
-  github:   "https://github.com/yourusername",
-  linkedin: "https://linkedin.com/in/yourusername",
-  email:    "hello@yourdomain.com",
-  twitter:  "https://twitter.com/yourusername",
+  github:   "https://github.com/tapasya27",
+  linkedin: "https://www.linkedin.com/in/tapasya27",
+  email:    "t.sharm7377@gmail.com",
+  twitter:  "",
 };

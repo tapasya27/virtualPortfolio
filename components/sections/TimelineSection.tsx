@@ -15,10 +15,10 @@ export function TimelineSection() {
   }, []);
 
   return (
-    <section ref={ref} data-section="Timeline" className="py-28 px-6 md:px-12" style={{ background: "var(--bg)" }}>
+    <section ref={ref} data-section="Timeline" className="py-14 md:py-28 px-4 md:px-12" style={{ background: "var(--bg)" }}>
       <div className="max-w-4xl mx-auto">
 
-        <div className="mb-16">
+        <div className="mb-10 md:mb-16">
           <motion.p
             className="font-mono text-xs tracking-widest uppercase mb-3"
             style={{ color: "var(--accent)", letterSpacing: "0.16em" }}
@@ -51,14 +51,14 @@ export function TimelineSection() {
             {TIMELINE.map((item, i) => (
               <motion.div
                 key={i}
-                className="relative pl-20 pb-14"
+                className="relative pl-16 md:pl-20 pb-8 md:pb-14"
                 initial={{ opacity: 0, x: -30 }}
                 animate={visible ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.75, delay: 0.25 + i * 0.15, ease: [0.16, 1, 0.3, 1] }}
               >
                 {/* Icon dot */}
                 <div
-                  className="absolute left-0 w-12 h-12 rounded-full flex items-center justify-center border"
+                  className="absolute left-0 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center border"
                   style={{
                     background: item.isEducation ? "var(--teal-dim)" : "var(--bg-4)",
                     borderColor: item.isEducation ? "rgba(0,200,150,0.4)" : "var(--border-2)",
@@ -74,7 +74,7 @@ export function TimelineSection() {
 
                 {/* Content */}
                 <div
-                  className="p-6 rounded-sm border glow-card"
+                  className="p-4 md:p-6 rounded-sm border glow-card"
                   style={{ background: "var(--bg-3)", borderColor: "var(--border)" }}
                 >
                   <div className="flex flex-col md:flex-row md:items-start justify-between gap-2 mb-3">
