@@ -15,7 +15,7 @@ export function TimelineSection() {
   }, []);
 
   return (
-    <section ref={ref} data-section="Timeline" className="py-14 md:py-28 px-4 md:px-12" style={{ background: "var(--bg)" }}>
+    <section ref={ref} data-section="Timeline" className="py-14 md:py-28 px-4 md:px-12" style={{ background: "rgba(15,14,14,0.88)" }}>
       <div className="max-w-4xl mx-auto">
 
         <div className="mb-10 md:mb-16">

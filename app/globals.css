@@ -75,6 +75,23 @@ body {
   -webkit-text-size-adjust: 100%;
 }
 
+/* On mobile, narrow the content so vision board photos peek through on the sides */
+@media (max-width: 768px) {
+  [data-section] {
+    margin-left: 14px;
+    margin-right: 14px;
+    border-radius: 10px;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+  .social-label {
+    display: none;
+  }
+  [data-section="Hero"] > div > div:first-child {
+    padding-top: 16px !important;
+  }
+}
+
 h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.1; letter-spacing: -0.02em; }
 
 .font-display    { font-family: var(--font-display); }

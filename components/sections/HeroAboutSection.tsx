@@ -95,7 +95,7 @@ export function HeroAboutSection() {
       data-section="Hero"
       ref={containerRef}
       style={{
-        background: "var(--bg)",
+        background: "rgba(15,14,14,0.85)",
         position: "relative",
         overflow: "hidden",
       }}
@@ -109,7 +109,7 @@ export function HeroAboutSection() {
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            padding: "min(100px, 10vh) clamp(16px, 5vw, 48px) 0",
+            padding: "min(60px, 8vh) clamp(16px, 5vw, 48px) 0",
             flexWrap: "wrap",
             gap: "12px",
           }}
@@ -140,6 +140,7 @@ export function HeroAboutSection() {
                   letterSpacing: "0.06em",
                   textDecoration: "none",
                   transition: "all 0.25s ease",
+                  flexShrink: 0,
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.background = hoverBg;
@@ -155,7 +156,7 @@ export function HeroAboutSection() {
                 }}
               >
                 <Icon size={16} />
-                {label}
+                <span className="social-label">{label}</span>
               </a>
             ))}
           </div>
@@ -177,7 +178,7 @@ export function HeroAboutSection() {
             className="name-glow"
             style={{
               fontFamily: nameFont,
-              fontSize: "clamp(48px, 12vw, 140px)",
+              fontSize: "clamp(34px, 10vw, 140px)",
               fontWeight: 700,
               color: lang === "en" ? "var(--text)" : "var(--accent)",
               letterSpacing: "-0.02em",
@@ -198,38 +199,37 @@ export function HeroAboutSection() {
             >
               |
             </span>
+            {/* Language badge — inline with name */}
+            <AnimatePresence mode="wait">
+              {phase !== "deleting" && (
+                <motion.span
+                  key={lang}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  transition={{ duration: 0.25, delay: 0.8 }}
+                  style={{
+                    display: "inline-block",
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "clamp(9px, 1.5vw, 12px)",
+                    fontWeight: 700,
+                    letterSpacing: "0.22em",
+                    color: "var(--accent)",
+                    border: "1.5px solid rgba(230,168,23,0.5)",
+                    background: "rgba(230,168,23,0.1)",
+                    padding: "3px 8px",
+                    borderRadius: "2px",
+                    userSelect: "none",
+                    textTransform: "uppercase",
+                    marginLeft: "12px",
+                    verticalAlign: "bottom",
+                  }}
+                >
+                  {lang === "en" ? "EN" : "HI"}
+                </motion.span>
+              )}
+            </AnimatePresence>
           </motion.h1>
-
-          {/* Language badge */}
-          <AnimatePresence mode="wait">
-            {phase !== "deleting" && (
-              <motion.div
-                key={lang}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.25, delay: 0.8 }}
-                style={{
-                  position: "absolute",
-                  bottom: "-4px",
-                  right: "0",
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "14px",
-                  fontWeight: 700,
-                  letterSpacing: "0.22em",
-                  color: "var(--accent)",
-                  border: "1.5px solid rgba(230,168,23,0.5)",
-                  background: "rgba(230,168,23,0.1)",
-                  padding: "8px 16px",
-                  borderRadius: "2px",
-                  userSelect: "none",
-                  textTransform: "uppercase",
-                }}
-              >
-                {lang === "en" ? "EN" : "HI"}
-              </motion.div>
-            )}
-          </AnimatePresence>
         </motion.div>
 
         {/* Tagline bar */}
@@ -239,7 +239,7 @@ export function HeroAboutSection() {
           animate={ready ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.65 }}
           style={{
-            padding: "20px clamp(16px, 5vw, 48px) 32px",
+            padding: "20px clamp(16px, 5vw, 48px) clamp(12px, 3vw, 32px)",
             marginTop: "8px",
           }}
         >
@@ -276,7 +276,7 @@ export function HeroAboutSection() {
                     transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                     style={{
                       fontFamily: "var(--font-bebas)",
-                      fontSize: "28px",
+                      fontSize: "clamp(24px, 6vw, 32px)",
                       letterSpacing: "0.12em",
                       textTransform: "uppercase",
                       color: "var(--accent)",
@@ -311,7 +311,7 @@ export function HeroAboutSection() {
       {/* ── ABOUT (below name, same section) ── */}
       <div
         ref={aboutRef}
-        style={{ padding: "clamp(24px, 6vw, 48px) clamp(16px, 5vw, 48px) clamp(60px, 10vw, 120px)", maxWidth: "1200px", margin: "0 auto" }}
+        style={{ padding: "clamp(12px, 4vw, 48px) clamp(16px, 5vw, 48px) clamp(60px, 10vw, 120px)", maxWidth: "1200px", margin: "0 auto" }}
       >
         <div
           style={{
@@ -329,7 +329,7 @@ export function HeroAboutSection() {
             <h2
               style={{
                 fontFamily: "var(--font-display)",
-                fontSize: "clamp(36px, 5vw, 58px)",
+                fontSize: "clamp(32px, 7vw, 58px)",
                 fontWeight: 400,
                 color: "var(--text)",
                 lineHeight: 1.1,
@@ -417,17 +417,17 @@ export function HeroAboutSection() {
               {
                 icon: "🔥",
                 title: "Gritty & Disciplined",
-                body: "I push through the hard stuff. Consistency and discipline over motivation — all day, every day.",
+                body: "I push through the hard stuff. Consistency and discipline over motivation - all day, every day.",
               },
               {
                 icon: "💻",
                 title: "Tech Savvy",
-                body: "Have been playing with tech since childhood. Be it swapping a laptop battery, building CI/CD pipelines, or refactoring a whole codebase — this is my home turf.",
+                body: "Have been playing with tech since my childhood. Be it swapping a laptop battery, building CI/CD pipelines, or refactoring a whole codebase - this is my home turf.",
               },
               {
                 icon: "✈️",
                 title: "Adrenaline Junkie",
-                body: "I enjoy things that give me adrenaline. I've jumped off a plane out of choice - twice.",
+                body: "I enjoy things that give me adrenaline. I've jumped off a plane out of choice (twice).",
               },
               {
                 icon: "🎨",

@@ -97,7 +97,7 @@ export function ProjectsSection() {
   const filtered = active === "All" ? PROJECTS : PROJECTS.filter((p) => p.category === active);
 
   return (
-    <section ref={ref} data-section="Projects" className="py-14 md:py-28 px-4 md:px-12" style={{ background: "var(--bg-2)" }}>
+    <section ref={ref} data-section="Projects" className="py-14 md:py-28 px-4 md:px-12" style={{ background: "rgba(26,24,23,0.88)" }}>
       <div className="max-w-6xl mx-auto">
 
         {/* Header */}

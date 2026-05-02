@@ -23,7 +23,7 @@ export function SkillsSection() {
       ref={ref}
       data-section="Skills"
       className="py-14 md:py-28 px-4 md:px-12"
-      style={{ background: "var(--bg)" }}
+      style={{ background: "rgba(15,14,14,0.88)" }}
     >
       <div className="max-w-6xl mx-auto">
 

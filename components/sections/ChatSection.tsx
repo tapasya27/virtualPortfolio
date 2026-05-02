@@ -21,7 +21,9 @@ export function ChatSection() {
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (messages.length > 0) {
+      bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
   }, [messages, loading]);
 
   async function send(text: string) {
@@ -53,7 +55,7 @@ export function ChatSection() {
   }
 
   return (
-    <section data-section="Chat" className="py-14 md:py-28 px-4 md:px-12 min-h-screen" style={{ background: "var(--bg)" }}>
+    <section data-section="Chat" className="py-14 md:py-28 px-4 md:px-12 min-h-screen" style={{ background: "rgba(15,14,14,0.88)" }}>
       <div className="max-w-3xl mx-auto">
 
         {/* Header */}
