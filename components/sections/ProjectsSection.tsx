@@ -1,87 +1,10 @@
 "use client";
 import { useRef, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { PROJECTS, SOCIAL } from "@/data/portfolio";
+import { PROJECTS } from "@/data/portfolio";
 import { Github, ExternalLink, Star } from "lucide-react";
 
 const CATEGORIES = ["All", "Web", "Data", "Tools", "OSS"];
-
-// Replace YOUR_GITHUB_USERNAME below with your real GitHub username
-const GITHUB_USERNAME = "yourusername";
-
-function GitHubHeatmap() {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVisible(true); }, { threshold: 0.1 });
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, []);
-
-  return (
-    <motion.div
-      ref={ref}
-      className="mt-20 pt-16"
-      style={{ borderTop: "1px solid var(--border)" }}
-      initial={{ opacity: 0, y: 30 }}
-      animate={visible ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-    >
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
-        <div>
-          <p className="font-mono text-xs tracking-widest uppercase mb-2" style={{ color: "var(--accent)", letterSpacing: "0.16em" }}>
-            Activity
-          </p>
-          <h3 className="font-display" style={{ fontSize: "28px", color: "var(--text)", fontWeight: 400 }}>
-            GitHub{" "}<span className="italic" style={{ color: "var(--accent)" }}>Contributions</span>
-          </h3>
-        </div>
-        <a
-          href={SOCIAL.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest transition-colors duration-200"
-          style={{ color: "var(--text-3)", letterSpacing: "0.1em" }}
-          onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = "var(--accent)"; }}
-          onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = "var(--text-3)"; }}
-        >
-          <Github size={14} /> View Profile
-        </a>
-      </div>
-
-      {/* GitHub stats card via shields */}
-      <div
-        className="rounded-sm border p-6 overflow-hidden"
-        style={{ background: "var(--bg-3)", borderColor: "var(--border)" }}
-      >
-        {/* Contribution graph — GitHub readme stats widget */}
-        <div className="w-full overflow-x-auto">
-          <img
-            src={`https://github-readme-stats.vercel.app/api?username=${GITHUB_USERNAME}&show_icons=true&theme=transparent&title_color=d4a843&text_color=b8b2a4&icon_color=00c896&border_color=1f1d18&bg_color=0f0e0c&hide_border=false&count_private=true`}
-            alt="GitHub Stats"
-            className="w-full max-w-full md:max-w-lg"
-            style={{ borderRadius: "4px" }}
-          />
-        </div>
-
-        {/* Streak stats */}
-        <div className="mt-4 w-full overflow-x-auto">
-          <img
-            src={`https://streak-stats.demolab.com/?user=${GITHUB_USERNAME}&theme=transparent&background=0f0e0c&ring=d4a843&fire=e84040&currStreakLabel=d4a843&sideLabels=b8b2a4&dates=6e6a60&border=1f1d18`}
-            alt="GitHub Streak"
-            className="w-full max-w-full md:max-w-lg"
-            style={{ borderRadius: "4px" }}
-          />
-        </div>
-
-        <p className="font-mono text-xs mt-4" style={{ color: "var(--text-3)", letterSpacing: "0.06em" }}>
-          * Live data via GitHub API · Updates every 24h
-        </p>
-      </div>
-    </motion.div>
-  );
-}
 
 export function ProjectsSection() {
   const ref = useRef<HTMLElement>(null);
@@ -237,9 +160,6 @@ export function ProjectsSection() {
             ))}
           </AnimatePresence>
         </div>
-
-        {/* GitHub heatmap — embedded below projects, not a separate section */}
-        <GitHubHeatmap />
       </div>
     </section>
   );

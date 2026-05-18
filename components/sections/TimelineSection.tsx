@@ -2,7 +2,7 @@
 import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { TIMELINE } from "@/data/portfolio";
-import { Briefcase, GraduationCap } from "lucide-react";
+import { Briefcase, ExternalLink } from "lucide-react";
 
 export function TimelineSection() {
   const ref = useRef<HTMLElement>(null);
@@ -58,18 +58,24 @@ export function TimelineSection() {
               >
                 {/* Icon dot */}
                 <div
-                  className="absolute left-0 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center border"
+                  className="absolute left-0 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center border overflow-hidden"
                   style={{
-                    background: item.isEducation ? "var(--teal-dim)" : "var(--bg-4)",
-                    borderColor: item.isEducation ? "rgba(0,200,150,0.4)" : "var(--border-2)",
+                    background: "#ffffff",
+                    borderColor: "var(--border-2)",
                     top: "2px",
-                    boxShadow: item.isEducation ? "0 0 20px rgba(0,200,150,0.15)" : "0 0 20px rgba(212,168,67,0.08)",
+                    boxShadow: "0 0 20px rgba(212,168,67,0.08)",
+                    padding: "6px",
                   }}
                 >
-                  {item.isEducation
-                    ? <GraduationCap size={16} style={{ color: "var(--teal)" }} />
-                    : <Briefcase     size={16} style={{ color: "var(--accent)" }} />
-                  }
+                  {item.logo ? (
+                    <img
+                      src={item.logo}
+                      alt={`${item.company} logo`}
+                      style={{ width: "100%", height: "100%", objectFit: "contain" }}
+                    />
+                  ) : (
+                    <Briefcase size={16} style={{ color: "var(--accent)" }} />
+                  )}
                 </div>
 
                 {/* Content */}
@@ -89,7 +95,64 @@ export function TimelineSection() {
                       {item.year}
                     </span>
                   </div>
-                  <p className="font-body text-sm mb-4" style={{ color: "var(--text-2)", lineHeight: 1.8 }}>{item.description}</p>
+                  <ul
+                    className="font-body text-sm mb-4 list-none p-0"
+                    style={{ color: "var(--text-2)", lineHeight: 1.7 }}
+                  >
+                    {item.bullets.map((b, idx) => (
+                      <li
+                        key={idx}
+                        style={{
+                          position: "relative",
+                          paddingLeft: "18px",
+                          marginBottom: "8px",
+                        }}
+                      >
+                        <span
+                          style={{
+                            position: "absolute",
+                            left: 0,
+                            top: "0.7em",
+                            width: "6px",
+                            height: "6px",
+                            borderRadius: "50%",
+                            background: "var(--accent)",
+                            opacity: 0.75,
+                          }}
+                        />
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                  {item.link && (
+                    <a
+                      href={item.link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-start gap-2 mb-4 p-3 rounded-sm border transition-all"
+                      style={{
+                        background: "var(--bg-4)",
+                        borderColor: "rgba(212,168,67,0.35)",
+                        textDecoration: "none",
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.borderColor = "var(--accent)";
+                        e.currentTarget.style.background = "var(--bg-5)";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.borderColor = "rgba(212,168,67,0.35)";
+                        e.currentTarget.style.background = "var(--bg-4)";
+                      }}
+                    >
+                      <ExternalLink size={14} style={{ color: "var(--accent)", flexShrink: 0, marginTop: "2px" }} />
+                      <span
+                        className="font-mono text-xs"
+                        style={{ color: "var(--accent)", letterSpacing: "0.04em", lineHeight: 1.5 }}
+                      >
+                        {item.link.label}
+                      </span>
+                    </a>
+                  )}
                   <div className="flex flex-wrap gap-2">
                     {item.tags.map((tag) => (
                       <span

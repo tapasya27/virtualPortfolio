@@ -10,8 +10,8 @@ export default function PageContent() {
   return (
     <main className="min-h-screen" style={{ background: "transparent" }}>
       <HeroAboutSection />
-      <SkillsSection />
       <TimelineSection />
+      <SkillsSection />
       <ProjectsSection />
       <ChatSection />
       <Footer />

@@ -384,11 +384,12 @@ export function HeroAboutSection() {
                 <div key={label}>
                   <p
                     style={{
-                      fontFamily: "var(--font-display)",
-                      fontSize: "42px",
+                      fontFamily: "var(--font-bebas)",
+                      fontSize: "56px",
                       color: "var(--accent)",
                       lineHeight: 1,
-                      fontWeight: 400,
+                      fontWeight: 700,
+                      letterSpacing: "0.02em",
                     }}
                   >
                     {value}
