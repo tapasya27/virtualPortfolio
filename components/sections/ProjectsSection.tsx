@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { PROJECTS } from "@/data/portfolio";
 import { Github, ExternalLink, Star } from "lucide-react";
 
-const CATEGORIES = ["All", "Web", "Data", "Tools", "OSS"];
+const CATEGORIES = ["All", "Web", "Data", "Tools", "Open Source"];
 
 export function ProjectsSection() {
   const ref = useRef<HTMLElement>(null);
@@ -38,7 +38,7 @@ export function ProjectsSection() {
               style={{ fontSize: "clamp(34px, 4.5vw, 54px)", color: "var(--text)", fontWeight: 400 }}
               initial={{ opacity: 0, y: 24 }} animate={visible ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.1 }}
             >
-              Selected{" "}<span className="italic" style={{ color: "var(--accent)" }}>Projects</span>
+              Selected Personal{" "}<span className="italic" style={{ color: "var(--accent)" }}>Projects</span>
             </motion.h2>
           </div>
 

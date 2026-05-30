@@ -104,54 +104,54 @@ export const TIMELINE = [
 
 export const PROJECTS = [
   {
+    title: "Squad",
+    description:
+      "Open-source project in the Squad ecosystem, contributing product features and collaborative development workflows.",
+    tech: ["Open Source", "Web App", "Product Engineering"],
+    github: "https://github.com/squadrepo/squad",
+    demo: null,
+    highlight: true,
+    category: "Web",
+  },
+  {
+    title: "ASDET",
+    description:
+      "Azure Sentinel Data Exploration Toolset (ASDET) repository, supporting data exploration and security analytics workflows.",
+    tech: ["Python", "Security", "Azure Sentinel"],
+    github: "https://github.com/microsoft/ASDET",
+    demo: null,
+    highlight: true,
+    category: "Open Source",
+  },
+  {
+    title: "Lively",
+    description:
+      "CS375 final project repository for Lively, a collaborative application built as a team software engineering project.",
+    tech: ["TypeScript", "Web App", "Team Project"],
+    github: "https://github.com/AzraGal/CS375FinalProject-Lively",
+    demo: null,
+    highlight: false,
+    category: "Web",
+  },
+  {
     title: "VirtualPortfolio",
     description:
-      "This portfolio — built with Next.js 15, Framer Motion animations, and a Claude-powered AI assistant that answers questions about me.",
-    tech: ["Next.js", "Framer Motion", "Claude AI", "Tailwind"],
-    github: "https://github.com/yourusername/virtualPortfolio",
+      "My personal portfolio built with Next.js 15, Framer Motion, and an AI chat + live GitHub contributions heatmap.",
+    tech: ["Next.js", "TypeScript", "Framer Motion", "Tailwind CSS"],
+    github: "https://github.com/tapasya27/virtualPortfolio",
     demo: "/",
     highlight: true,
     category: "Web",
   },
   {
-    title: "Project Alpha",
+    title: "INFO 442 Project",
     description:
-      "A real-time collaboration tool built with WebSockets. Supports live cursors, shared document editing, and presence indicators.",
-    tech: ["React", "Node.js", "WebSockets", "PostgreSQL"],
-    github: "https://github.com/yourusername/project-alpha",
-    demo: "https://project-alpha.vercel.app",
-    highlight: false,
-    category: "Web",
-  },
-  {
-    title: "DataViz Dashboard",
-    description:
-      "Interactive analytics dashboard with filterable charts, dark/light mode, and CSV export. Built for a logistics client.",
-    tech: ["React", "D3.js", "TypeScript", "REST API"],
-    github: "https://github.com/yourusername/dataviz",
-    demo: "https://dataviz-demo.vercel.app",
-    highlight: false,
+      "Course project repository for INFO 442 focused on applied data work and interactive analysis deliverables.",
+    tech: ["JavaScript", "Data Analysis", "Visualization"],
+    github: "https://github.com/tapasya27/INFO-442",
+    demo: null,
+    highlight: true,
     category: "Data",
-  },
-  {
-    title: "CLI Toolkit",
-    description:
-      "A Python CLI toolkit for automating repetitive dev tasks — scaffolding, environment setup, and deployment shortcuts.",
-    tech: ["Python", "Click", "Docker", "Bash"],
-    github: "https://github.com/yourusername/cli-toolkit",
-    demo: null,
-    highlight: false,
-    category: "Tools",
-  },
-  {
-    title: "Open Source Contribution",
-    description:
-      "Contributed accessibility improvements and TypeScript types to a popular open-source component library (5k+ stars).",
-    tech: ["TypeScript", "Jest", "Storybook", "ARIA"],
-    github: "https://github.com/yourusername/oss-contribution",
-    demo: null,
-    highlight: false,
-    category: "OSS",
   },
 ];
 
