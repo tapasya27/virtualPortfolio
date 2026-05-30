@@ -8,6 +8,14 @@ type Calendar = {
   weeks: Week[];
 };
 
+type CachedCalendar = {
+  fetchedAt: number;
+  payload: Calendar;
+};
+
+const CACHE_KEY = "github_contributions_calendar_v1";
+const CACHE_TTL_MS = 60 * 60 * 1000;
+
 // Map contribution count to one of 5 intensity buckets (0–4)
 function intensity(count: number): number {
   if (count === 0) return 0;
@@ -20,10 +28,10 @@ function intensity(count: number): number {
 // GitHub dark theme contribution colors
 const COLORS = [
   "#161b22", // 0
-  "#0e4429", // 1
-  "#006d32", // 2
-  "#26a641", // 3
-  "#39d353", // 4
+  "#0f5a33", // 1
+  "#1f8f4b", // 2
+  "#2fbf63", // 3
+  "#56d364", // 4
 ];
 
 export function GitHubHeatmap() {
@@ -32,19 +40,53 @@ export function GitHubHeatmap() {
 
   useEffect(() => {
     let cancelled = false;
-    fetch("/api/github-contributions")
+    let hadFreshCache = false;
+    const controller = new AbortController();
+
+    try {
+      const raw = localStorage.getItem(CACHE_KEY);
+      if (raw) {
+        const cached = JSON.parse(raw) as CachedCalendar;
+        if (
+          cached?.payload?.weeks?.length &&
+          typeof cached.fetchedAt === "number" &&
+          Date.now() - cached.fetchedAt < CACHE_TTL_MS
+        ) {
+          hadFreshCache = true;
+          setData(cached.payload);
+        }
+      }
+    } catch {
+      // Ignore cache parse/storage errors and continue with network fetch.
+    }
+
+    fetch("/api/github-contributions", { signal: controller.signal })
       .then((r) => {
         if (!r.ok) throw new Error(`HTTP ${r.status}`);
         return r.json();
       })
       .then((json: Calendar) => {
-        if (!cancelled) setData(json);
+        if (!cancelled) {
+          setData(json);
+          try {
+            const entry: CachedCalendar = {
+              fetchedAt: Date.now(),
+              payload: json,
+            };
+            localStorage.setItem(CACHE_KEY, JSON.stringify(entry));
+          } catch {
+            // Ignore storage quota / privacy mode failures.
+          }
+        }
       })
       .catch((e) => {
-        if (!cancelled) setError(e.message || "Failed to load");
+        if (!cancelled && !hadFreshCache && e?.name !== "AbortError") {
+          setError(e.message || "Failed to load");
+        }
       });
     return () => {
       cancelled = true;
+      controller.abort();
     };
   }, []);
 

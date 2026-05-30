@@ -20,6 +20,8 @@ const QUERY = `
 
 // Revalidate every hour
 export const revalidate = 3600;
+export const runtime = "edge";
+export const preferredRegion = "auto";
 
 export async function GET() {
   const token = process.env.GITHUB_TOKEN;
