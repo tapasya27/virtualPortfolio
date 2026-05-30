@@ -33,8 +33,7 @@ export const TIMELINE = [
     bullets: [
       "Contributing to the Microsoft Organization Repository — source of truth for Legal Entity IDs and family hierarchies.",
       "Powering data products that represent commercial organizations across Microsoft and its customers.",
-      "Continuing as a primary on-call responder for production incidents around internal app security and Azure certificate management.",
-      "Continuing on the Accounts team in Commerce + Ecosystems.",
+      "Served as a primary on-call responder for production incidents involving internal app security and Azure certificate management.",
     ],
     tags: ["C#", "Distributed Systems", "Azure", "Data Products"],
   },

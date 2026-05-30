@@ -17,13 +17,13 @@ function intensity(count: number): number {
   return 4;
 }
 
-// Gold-toned palette aligned with var(--accent) #d4a843
+// GitHub dark theme contribution colors
 const COLORS = [
-  "#1f1d18", // 0 — empty (matches --bg-4-ish)
-  "#3d3220", // 1
-  "#6e5728", // 2
-  "#a17d30", // 3
-  "#d4a843", // 4 — full accent
+  "#161b22", // 0
+  "#0e4429", // 1
+  "#006d32", // 2
+  "#26a641", // 3
+  "#39d353", // 4
 ];
 
 export function GitHubHeatmap() {
@@ -70,7 +70,8 @@ export function GitHubHeatmap() {
     );
   }
 
-  const months = monthLabels(data.weeks);
+  const weeks = data.weeks;
+  const monthTicks = monthLabels(weeks);
 
   return (
     <div className="w-full">
@@ -92,21 +93,26 @@ export function GitHubHeatmap() {
 
       {/* Heatmap grid */}
       <div className="w-full overflow-x-auto">
-        <div style={{ display: "inline-block", minWidth: "100%" }}>
+        <div style={{ minWidth: "680px", width: "100%" }}>
           {/* Month labels */}
-          <div className="flex" style={{ marginLeft: "0px", marginBottom: "4px" }}>
-            {months.map((m, i) => (
+          <div
+            className="grid gap-[2px]"
+            style={{
+              gridTemplateColumns: `repeat(${weeks.length}, minmax(0, 1fr))`,
+              marginBottom: "6px",
+            }}
+          >
+            {monthTicks.map((m, i) => (
               <div
                 key={i}
                 className="font-mono"
                 style={{
-                  width: "13px",
+                  minHeight: "10px",
                   fontSize: "9px",
                   color: "var(--text-3)",
                   letterSpacing: "0.04em",
                   textAlign: "left",
                   whiteSpace: "nowrap",
-                  paddingLeft: m.label ? "0" : "0",
                 }}
               >
                 {m.label || ""}
@@ -115,16 +121,19 @@ export function GitHubHeatmap() {
           </div>
 
           {/* Week columns */}
-          <div className="flex gap-[2px]">
-            {data.weeks.map((week, wi) => (
-              <div key={wi} className="flex flex-col gap-[2px]">
+          <div
+            className="grid gap-[2px]"
+            style={{ gridTemplateColumns: `repeat(${weeks.length}, minmax(0, 1fr))` }}
+          >
+            {weeks.map((week, wi) => (
+              <div key={wi} className="grid grid-rows-7 gap-[2px]">
                 {Array.from({ length: 7 }).map((_, di) => {
                   const day = week.contributionDays[di];
                   if (!day) {
                     return (
                       <div
                         key={di}
-                        style={{ width: "11px", height: "11px", background: "transparent" }}
+                        style={{ aspectRatio: "1 / 1", background: "transparent" }}
                       />
                     );
                   }
@@ -134,10 +143,9 @@ export function GitHubHeatmap() {
                       key={di}
                       title={`${day.date}: ${day.contributionCount} contribution${day.contributionCount === 1 ? "" : "s"}`}
                       style={{
-                        width: "11px",
-                        height: "11px",
+                        aspectRatio: "1 / 1",
                         background: COLORS[lvl],
-                        borderRadius: "2px",
+                        borderRadius: "3px",
                       }}
                     />
                   );
@@ -158,10 +166,10 @@ export function GitHubHeatmap() {
               <div
                 key={i}
                 style={{
-                  width: "11px",
-                  height: "11px",
+                  width: "10px",
+                  height: "10px",
                   background: c,
-                  borderRadius: "2px",
+                  borderRadius: "3px",
                 }}
               />
             ))}

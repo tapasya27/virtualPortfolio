@@ -5,8 +5,6 @@ import { Github } from "lucide-react";
 import { SKILLS, SOCIAL } from "@/data/portfolio";
 import { GitHubHeatmap } from "@/components/ui/GitHubHeatmap";
 
-const GITHUB_USERNAME = "tapasya27";
-
 const TIERS = [
   {
     id: "daily",
@@ -99,22 +97,16 @@ export function SkillsSection() {
             className="rounded-sm border p-4 md:p-6 overflow-hidden"
             style={{ background: "var(--bg-3)", borderColor: "var(--border)" }}
           >
-            <div className="w-full overflow-x-auto">
-              <img
-                src={`https://github-readme-stats.vercel.app/api?username=${GITHUB_USERNAME}&show_icons=true&theme=transparent&title_color=d4a843&text_color=b8b2a4&icon_color=00c896&border_color=1f1d18&bg_color=0f0e0c&hide_border=false&count_private=true&cache_seconds=3600`}
-                alt="GitHub Stats"
-                className="w-full max-w-full md:max-w-lg"
-                style={{ borderRadius: "4px" }}
-              />
-            </div>
-
             {/* Live contributions heatmap via GitHub GraphQL */}
-            <div className="mt-6">
+            <div>
               <GitHubHeatmap />
             </div>
 
             <p className="font-mono text-xs mt-4" style={{ color: "var(--text-3)", letterSpacing: "0.06em" }}>
-              * Heatmap updates hourly · Stats refresh every hour
+              * Heatmap shows the last year · Updates hourly
+            </p>
+            <p className="font-mono text-xs mt-2" style={{ color: "var(--text-3)", letterSpacing: "0.04em", lineHeight: 1.5 }}>
+              This reflects personal/public GitHub activity. Many work contributions happen in private enterprise repos and are not visible here.
             </p>
           </div>
         </motion.div>
