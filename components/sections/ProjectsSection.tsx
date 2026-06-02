@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { PROJECTS } from "@/data/portfolio";
 import { Github, ExternalLink, Star } from "lucide-react";
 
-const CATEGORIES = ["All", "Web", "Data", "Tools", "Open Source"];
+const CATEGORIES = ["All", "Web", "Data", "Open Source"];
 
 export function ProjectsSection() {
   const ref = useRef<HTMLElement>(null);

@@ -111,7 +111,7 @@ export const PROJECTS = [
     github: "https://github.com/squadrepo/squad",
     demo: null,
     highlight: true,
-    category: "Web",
+    category: "Open Source",
   },
   {
     title: "ASDET",
